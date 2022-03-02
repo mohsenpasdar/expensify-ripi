@@ -38,6 +38,8 @@ database.ref('age').set(33);
 database.ref('location/city').set("Toronto");
 database.ref('location/country').set("Canada");
 database.ref('attributes').set({
-  height: 188,
-  weight: 81
+  height: 187,
+  weight: 80
 });
+
+console.log('I made a request to change data');
