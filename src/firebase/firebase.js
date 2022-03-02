@@ -22,24 +22,70 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-database.ref().set({
-  name: "Mohsen Pasdar",
-  age: 34,
-  isSingle: false,
-  location: {
-    city: 'Tehran',
-    country: "Iran"
-  }
+database.ref().on('value', (snapshot) => {
+  console.log(`${snapshot.val().name} is a ${snapshot.val().job.title} at ${snapshot.val().job.company}.`);
+}, (e) => {
+  console.log('Error fetching data', e);
 });
 
-// database.ref().set('This is my data');
+// const onValueChange = database.ref().on('value', (snapshot) => {
+//   console.log(snapshot.val());
+// }, (e) => {
+//   console.log('Error with fetching data', e);
+// });
+//
+// setTimeout(() => {
+//   database.ref('age').set(37);
+// }, 3500);
+//
+// setTimeout(() => {
+//   database.ref().off('value', onValueChange);
+// }, 7000);
+//
+// setTimeout(() => {
+//   database.ref('age').set(39);
+// }, 10500);
 
-database.ref('age').set(33);
-database.ref('location/city').set("Toronto");
-database.ref('location/country').set("Canada");
-database.ref('attributes').set({
-  height: 187,
-  weight: 80
-});
+  // database.ref('location/city')
+  //   .once('value')
+  //   .then((snapshot) => {
+  //     const val = snapshot.val();
+  //     console.log(val);
+  //   })
+  //   .catch((e) => {
+  //     console.log('Error fetching data', e);
+  //   });
 
-console.log('I made a request to change data');
+// database.ref().set({
+//   name: "Mohsen Pasdar",
+//   age: 34,
+//   stressLevel: 6,
+//   job: {
+//     title: 'engineer',
+//     company: 'ripi'
+//   },
+//   location: {
+//     city: 'Tehran',
+//     country: "Iran"
+//   }
+// }).then(() => {
+//   console.log('Data is saved');
+// }).catch((e) => {
+//   console.log('this failed', e );
+// });
+//
+// database.ref().update({
+//   stressLevel: 9,
+//   'job/company': 'facebook',
+//   'location/city': 'Seattle'
+// });
+
+// database.ref()
+//   .remove()
+//   .then(() => {
+//     console.log('remove succeed');
+//   })
+//   .catch((e) => {
+//     console.log('remove failed', e);
+//   }
+// );
