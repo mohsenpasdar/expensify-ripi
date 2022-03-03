@@ -22,11 +22,71 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 
 const database = firebase.database();
-database.ref().on('value', (snapshot) => {
-  console.log(`${snapshot.val().name} is a ${snapshot.val().job.title} at ${snapshot.val().job.company}.`);
-}, (e) => {
-  console.log('Error fetching data', e);
-});
+
+export { firebase, database as default };
+
+
+
+
+
+// database.ref('expenses').on('child_removed', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// });
+//
+// database.ref('expenses').on('child_changed', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// });
+//
+// database.ref('expenses').on('child_added', (snapshot) => {
+//   console.log(snapshot.key, snapshot.val());
+// });
+
+// database.ref('expenses')
+//   .once('value')
+//   .then((snapshot) => {
+//     const expenses = [];
+//
+//     snapshot.forEach((childSnapshot) => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       });
+//     });
+//     console.log(expenses);
+//   }
+// );
+//
+// database.ref('expenses')
+//   .on('value', (snapshot) => {
+//     const expenses = [];
+//     snapshot.forEach((childSnapshot) => {
+//       expenses.push({
+//         id: childSnapshot.key,
+//         ...childSnapshot.val()
+//       });
+//     });
+//     console.log(expenses);
+//   }, (e) => {
+//     console.log('Error fetching data:', e);
+//   });
+
+// database.ref('expenses').push({
+//   descriptiom: 'Rent',
+//   note: 'January',
+//   amount: 123,
+//   createdAt: 4512
+// });
+
+
+
+
+
+//
+// database.ref().on('value', (snapshot) => {
+//   console.log(`${snapshot.val().name} is a ${snapshot.val().job.title} at ${snapshot.val().job.company}.`);
+// }, (e) => {
+//   console.log('Error fetching data', e);
+// });
 
 // const onValueChange = database.ref().on('value', (snapshot) => {
 //   console.log(snapshot.val());
