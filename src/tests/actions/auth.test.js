@@ -5,7 +5,7 @@ test('should generate login action object', () => {
   const action = login(uid);
   expect(action).toEqual({
     type: 'LOGIN',
-    id
+    uid
   });
 });
 
